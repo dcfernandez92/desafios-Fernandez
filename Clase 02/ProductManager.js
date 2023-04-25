@@ -5,6 +5,11 @@ class ProductManager {
     }
 
     addProduct(title, description, price, thumbnail, code, stock){
+        
+        if(!title || !description || !price || !thumbnail || !code || !stock){
+            return "Campos obligatorios! No pueden estar vacíos"
+        }
+        
         const product = {
             title,
             description,
