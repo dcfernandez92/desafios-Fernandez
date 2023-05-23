@@ -13,6 +13,9 @@ export default class ProductManager {
         } else {
             product.id = products[products.length - 1].id + 1
         }
+        if(products.find(p => p.code === product.code)){
+            return null;
+        }
         products.push(product);
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'))
         return products;
@@ -32,31 +35,34 @@ export default class ProductManager {
         const products = await this.getProducts();
 
         const existProduct = products.findIndex(p => p.id === id);
-        return (existProduct !== -1) ? products[existProduct] : "Not Found";
+        if(existProduct === -1)
+            return null;
+        return products[existProduct];
 
     }
 
     updateProduct = async (product) => {
         const products = await this.getProducts();
-
         const index = products.findIndex(p => p.id === product.id);
-        if (index !== -1) {
-            products.splice(index, 1, product);
-            await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'));
-        }
+
+        if (index === -1) 
+            return null;
+
+        products.splice(index, 1, product);
+        await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'));
+        return products;
     }
 
     deleteProduct = async (id) => {
         const products = await this.getProducts();
-
         const productIndex = products.findIndex(p => p.id === id);
-        if (productIndex !== -1) {
-            products.splice(productIndex, 1);
-            await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'));
-            return products;
-        } else {
-            return "Product not found";
-        }
+
+        if (productIndex === -1) 
+            return null;
+
+        products.splice(productIndex, 1);
+        await fs.promises.writeFile(this.path, JSON.stringify(products, null, '\t'));
+        return products;        
     }
 };
 

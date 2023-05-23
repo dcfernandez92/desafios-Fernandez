@@ -1,18 +1,18 @@
 {
   "name": "clase-06",
   "version": "1.0.0",
-  "main": "src/app.js",
+  "main": "./src/app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no tes t specified\" && exit 1",
     "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.22"
   },
-  "devDependencies": {},
   "description": ""
 }
