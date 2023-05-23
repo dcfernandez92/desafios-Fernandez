@@ -1,0 +1,112 @@
+[
+	{
+		"title": "El Nombre del Viento",
+		"description": "Primer libro de la saga Crónica del asesino de reyes",
+		"price": "12500",
+		"code": "9788401337208",
+		"stock": "14",
+		"category": "Fantasía",
+		"status": "true",
+		"thumbnail": [],
+		"id": 1
+	},
+	{
+		"title": "El Hobbit",
+		"description": "Libro que narra la historia de Bilbo Baggins",
+		"price": "5600",
+		"code": "9780044403371",
+		"stock": "44",
+		"category": "Fantasía",
+		"status": "true",
+		"thumbnail": [],
+		"id": 2
+	},
+	{
+		"title": "El camino de los Reyes",
+		"description": "Primer libro de la saga del archivo de las tormentas",
+		"price": "13100",
+		"code": "9788401337209",
+		"stock": "10",
+		"category": "Fantasía",
+		"status": "true",
+		"thumbnail": [],
+		"id": 3
+	},
+	{
+		"title": "Juego de Tronos",
+		"description": "Primer libro de la saga de canción de hielo y fuego",
+		"price": "11000",
+		"code": "9788401337210",
+		"stock": "32",
+		"category": "Fantasía",
+		"status": "true",
+		"thumbnail": [],
+		"id": 4
+	},
+	{
+		"title": "Proyecto Hail Mary",
+		"description": "Libro sobre una misión espacial arriba de la nave Hail Mary",
+		"price": "7000",
+		"code": "9788401337211",
+		"stock": "7",
+		"category": "Ciencia Ficción",
+		"status": "true",
+		"thumbnail": [],
+		"id": 5
+	},
+	{
+		"title": "Fundación",
+		"description": "Primer libro de la trilogía de la fundación",
+		"price": "3200",
+		"code": "9788401337212",
+		"stock": "2",
+		"category": "Ciencia Ficción",
+		"status": "true",
+		"thumbnail": [],
+		"id": 6
+	},
+	{
+		"title": "Flores para Algernon",
+		"description": "Libro sobre la vida del personaje Charlie Gordon",
+		"price": "4500",
+		"code": "9788401337213",
+		"stock": "23",
+		"category": "Ciencia Ficción",
+		"status": "true",
+		"thumbnail": [],
+		"id": 7
+	},
+	{
+		"title": "Misery",
+		"description": "La historia sigue los sucesos que le ocurren a Paul Sheldon",
+		"price": "7500",
+		"code": "9788401337214",
+		"stock": "18",
+		"category": "Thriller",
+		"status": "true",
+		"thumbnail": [],
+		"id": 8
+	},
+	{
+		"title": "La Sombra del Viento",
+		"description": "Primer libro de la saga del cementerio de los libros olvidados",
+		"price": "8000",
+		"code": "9788401337215",
+		"stock": "14",
+		"category": "Thriller",
+		"status": "true",
+		"thumbnail": [],
+		"id": 9
+	},
+	{
+		"title": "El Psicoanalista",
+		"description": "Pone a prueba la capacidad del protagonista para evitar su suicidio frente a la presión de un desconocido",
+		"price": "5999",
+		"code": "9788401337216",
+		"stock": "5",
+		"category": "Thriller",
+		"status": "true",
+		"thumbnail": [],
+		"id": 10
+	}
+]
