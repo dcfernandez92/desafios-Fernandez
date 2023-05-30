@@ -11,28 +11,6 @@
 		"id": 1
 	},
 	{
-		"title": "El Hobbit",
-		"description": "Libro que narra la historia de Bilbo Baggins",
-		"price": "5600",
-		"code": "9780044403371",
-		"stock": "44",
-		"category": "Fantasía",
-		"status": "true",
-		"thumbnail": [],
-		"id": 2
-	},
-	{
-		"title": "El camino de los Reyes",
-		"description": "Primer libro de la saga del archivo de las tormentas",
-		"price": "13100",
-		"code": "9788401337209",
-		"stock": "10",
-		"category": "Fantasía",
-		"status": "true",
-		"thumbnail": [],
-		"id": 3
-	},
-	{
 		"title": "Juego de Tronos",
 		"description": "Primer libro de la saga de canción de hielo y fuego",
 		"price": "11000",
@@ -108,5 +86,25 @@
 		"status": "true",
 		"thumbnail": [],
 		"id": 10
+	},
+	{
+		"title": "kjh",
+		"description": "kjhkjh",
+		"price": "6",
+		"code": "jhgjh",
+		"stock": "6",
+		"category": "jhghj",
+		"status": "on",
+		"id": 11
+	},
+	{
+		"title": "jhgjgh",
+		"description": "jhgjhg",
+		"price": "6",
+		"code": "jhg",
+		"stock": "7",
+		"category": "jhgghj",
+		"status": "on",
+		"id": 12
 	}
 ]
