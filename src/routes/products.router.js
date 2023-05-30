@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { io } from '../app.js';
 import ProductManager from "../ProductManager.js"
 import uploader from "../services/uploader.js";
 
@@ -53,6 +54,8 @@ router.post("/", uploader.array("thumbnails"), async (req, res) => {
     
     if (products === null)
         return res.status(400).send({status:"error",payload: "Ya existe un producto con ese code"});
+    
+    io.emit('products', products);
     res.status(201).send({status:"success",payload: products});
 });
 
@@ -69,6 +72,8 @@ router.delete("/:pid", async (req, res) => {
     const products = await productManager.deleteProduct(parseInt(req.params.pid));
     if(!products)
         return res.status(400).send({status:"error",payload: "El id de producto no existe"});
+    
+    io.emit('products', products);
     res.send({status:"success",payload: products});
 });
 
