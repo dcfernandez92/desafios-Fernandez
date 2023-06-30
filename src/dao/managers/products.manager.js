@@ -22,7 +22,11 @@ export default class ProductManager {
     }
 
     getProductById = async (pid) => {
-        return productModel.findOne({_id:pid})
+        const product = await productModel.findOne({_id:pid})
+        if (product === null) {
+            throw new Error('No existe un producto con el id indicado');
+        }
+        return product;
     }
 
     updateProduct = async (pid, product) => {

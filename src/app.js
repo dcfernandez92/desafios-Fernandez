@@ -27,15 +27,6 @@ app.use('/', viewsRouter);
 
 const server = app.listen(8080, () => console.log("Server running"));
 
-// mongoose.connect('mongodb+srv://coderUser:coderUser@codercluster.ujjwffv.mongodb.net/?retryWrites=true&w=majority')
-//     .then(() => {
-//         console.log('Connected to the database');
-//     })
-//     .catch(error => {
-//         console.log("Cannot connect to the database: " + error);
-//         process.exit();
-//     });
-
 mongoose.connect('mongodb+srv://coderUser:coderUser@codercluster.ujjwffv.mongodb.net/ecommerce')
     .then(() => {
         console.log('Connected to the database');
