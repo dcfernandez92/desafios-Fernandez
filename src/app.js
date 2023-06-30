@@ -5,7 +5,10 @@ import __dirname from './utils.js';
 import { Server } from 'socket.io';
 import handlebars from 'express-handlebars';
 import viewsRouter from './routes/views.router.js'
-import ProductManager from './ProductManager.js';
+import ProductManager from './dao/managers/ProductManager.js';
+import usersRouter from './routes/users.router.js';
+import studentsRouter from './routes/students.router.js'
+import mongoose from 'mongoose';
 
 const app = express();
 
@@ -23,6 +26,18 @@ app.set('view engine', 'handlebars');
 app.use('/', viewsRouter);
 
 const server = app.listen(8080, () => console.log("Server running"));
+
+mongoose.connect('mongodb+srv://coderUser:coderUser@codercluster.ujjwffv.mongodb.net/ecommerce')
+    .then(() => {
+        console.log('Connected to the database');
+    })
+    .catch(error => {
+        console.log("Cannot connect to the database: " + error);
+        process.exit();
+    });
+
+app.use('/api/users', usersRouter);
+app.use('/api/students', studentsRouter);
 
 const io = new Server(server);
 const productManager = new ProductManager();
