@@ -20,12 +20,14 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:pid", async (req, res) => {
-    let {pid}= req.params;
-    const products = await productManager.getProductById(pid);
-    if (!products) {
-        return res.status(404).send({status:"error",payload: "No existe un producto con el id indicado"});
+    try{        
+        let {pid}= req.params;
+        const products = await productManager.getProductById(pid);
+
+        res.send({status:"success",payload: products});
+    } catch(err){
+        res.status(500).send({ status: "error", payload: err.message });
     }
-    res.send({status:"success",payload: products});
 });
 
 router.post("/", uploader.array("thumbnails"), async (req, res) => {
@@ -43,7 +45,7 @@ router.post("/", uploader.array("thumbnails"), async (req, res) => {
     } = product;
 
     if (!title || !description || !price || !code || !stock || !category) {
-        return res.status(400).send("Todos los campos son requeridos");
+        return res.status(400).send({ status: "error", payload: "Todos los campos son requeridos"});
     }
 
     if(!status){
