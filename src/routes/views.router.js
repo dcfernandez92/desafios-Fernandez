@@ -15,7 +15,7 @@ const messageManager = new MessageManager();
 
 router.get('/products', async (req, res) => {
     let {
-        limit = 3, page = 1, sort, query, category, availability
+        limit = 10, page = 1, sort, query, category, availability
     } = req.query;
     limit = parseInt(limit);
     page = parseInt(page);
@@ -23,7 +23,7 @@ router.get('/products', async (req, res) => {
     const options = {
         page,
         limit,
-        sort: sort === 'desc' ? '-price' : 'price',
+        sort: { price: sort === 'desc' ? -1 : 1 },
         lean: true
     };
 
