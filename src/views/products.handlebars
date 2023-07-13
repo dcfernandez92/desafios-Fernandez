@@ -1,3 +1,12 @@
+<div>
+  <h1>Bienvenido, {{user.first_name}} {{user.last_name}}!</h1>
+  {{#if user.role}}
+    <p>Rol: Admin</p>
+  {{else}}
+    <p>Rol: Usuario</p>
+  {{/if}}
+</div>
+
 {{#if isValid}}
 <div>
     {{#each docs}}
@@ -13,15 +22,21 @@
 <br/>
 <div>
     {{#if hasPrevPage}}
-        <a href={{this.prevLink}}><< Anterior</a>
+        <a href={{prevLink}}><< Anterior</a>
     {{/if}}
     &nbsp;
-    {{this.page}}
+    {{page}}
     &nbsp;
      {{#if hasNextPage}}
-        <a href={{this.nextLink}}>Siguiente >></a>
+        <a href={{nextLink}}>Siguiente >></a>
     {{/if}} 
 </div>
 {{else}}
 <h1>No hay productos para mostrar</h1>
 {{/if}}
+<div>
+    <form action="/api/sessions/logout" method="get">
+      <br />
+      <button type="submit">logout</button>
+    </form>
+  </div>

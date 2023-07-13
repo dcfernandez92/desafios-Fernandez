@@ -1,19 +1,16 @@
-import {
-    Router
-} from 'express';
+import { Router } from 'express';
 import ProductManager from '../dao/managers/products.manager.js';
 import MessageManager from '../dao/managers/message.manager.js';
-import {
-    productModel
-} from "../dao/models/product.model.js";
+import { productModel } from "../dao/models/product.model.js";
 import CartManager from '../dao/managers/carts.manager.js'
+import authMdw from '../middleware/auth.middleware.js';
 
 const router = Router();
 const productManager = new ProductManager();
 const cartManager = new CartManager();
 const messageManager = new MessageManager();
 
-router.get('/products', async (req, res) => {
+router.get('/products', authMdw, async (req, res) => {
     let {
         limit = 10, page = 1, sort, query, category, availability
     } = req.query;
@@ -54,7 +51,12 @@ router.get('/products', async (req, res) => {
     result.nextLink = result.hasNextPage ? `http://localhost:8080/products?page=${result.nextPage}` : '';
     result.isValid = !(page <= 0 || page > result.totalPages);
     console.log(result)
-    res.render('products', result);
+    const user = req.session.user;
+    console.log(user)
+    res.render('products', {
+        user: req.session.user,
+        ...result
+    });
 });
 
 router.get('/carts/:cid', async (req, res) => {
@@ -115,5 +117,26 @@ router.post('/api/messages', async (req, res) => {
         index
     });
 });
+
+//Session
+router.get("/login", async (req,res) => {
+    if(req.session.user) return res.redirect('products');
+    res.render('login');
+})
+
+router.get("/register", async (req,res) => {
+    if(req.session.user) return res.redirect('products');
+    res.render('register');
+})
+
+router.get("/profile", authMdw,  async (req,res) => {
+    const user = req.session.user;
+    console.log(user);
+
+    res.render("profile", {
+        user
+    });
+});
+
 
 export default router;

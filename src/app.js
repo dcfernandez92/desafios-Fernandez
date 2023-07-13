@@ -9,13 +9,30 @@ import ProductManager from './dao/managers/ProductManager.js';
 import usersRouter from './routes/users.router.js';
 import studentsRouter from './routes/students.router.js'
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import mongoStore from 'connect-mongo'
+import sessionRoutes from './routes/sessions.router.js';
 
+const MONGO_URL = 'mongodb+srv://coderUser:coderUser@codercluster.ujjwffv.mongodb.net/ecommerce';
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+    session({
+        store: mongoStore.create({
+            mongoUrl: MONGO_URL,
+            mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true},
+            ttl: 10
+        }),
+        secret: "secretSession",
+        resave: false,
+        saveUninitialized: false
+    })
+);
+
 app.use(express.static(`${__dirname}/public`));
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
@@ -25,9 +42,10 @@ app.set('views', `${__dirname}/views`);
 app.set('view engine', 'handlebars');
 app.use('/', viewsRouter);
 
+
 const server = app.listen(8080, () => console.log("Server running"));
 
-mongoose.connect('mongodb+srv://coderUser:coderUser@codercluster.ujjwffv.mongodb.net/ecommerce')
+mongoose.connect(MONGO_URL)
     .then(() => {
         console.log('Connected to the database');
     })
@@ -38,6 +56,7 @@ mongoose.connect('mongodb+srv://coderUser:coderUser@codercluster.ujjwffv.mongodb
 
 app.use('/api/users', usersRouter);
 app.use('/api/students', studentsRouter);
+app.use('/api/sessions', sessionRoutes);
 
 const io = new Server(server);
 const productManager = new ProductManager();
