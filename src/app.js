@@ -13,6 +13,8 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import mongoStore from 'connect-mongo'
 import sessionRoutes from './routes/sessions.router.js';
+import passport from 'passport';
+import initializePassport from './config/passport.config.js';
 
 const MONGO_URL = 'mongodb+srv://coderUser:coderUser@codercluster.ujjwffv.mongodb.net/ecommerce';
 const app = express();
@@ -32,6 +34,9 @@ app.use(
         saveUninitialized: false
     })
 );
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static(`${__dirname}/public`));
 app.use('/api/products', productsRouter);
